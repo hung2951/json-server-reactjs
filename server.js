@@ -10,13 +10,14 @@ server.use(cors())
 server.use(middlewares)
 server.db = router.db;
 server.use(auth);
-server.use(router)
+
 server.use((req, res, next) => {
     if (req.method === 'POST') {
       req.body.createdAt = Date.now()
     }
     next()
   })
+server.use(router)
 server.listen(8000, () => {
     console.log('JSON Server is running')
 })
